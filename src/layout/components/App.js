@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react'
 
-import Routes from '../routes'
+import Layout from './Layout'
 
 class App extends PureComponent {
   render () {
-    return <Routes />
+    return <Layout />
   }
 }
 

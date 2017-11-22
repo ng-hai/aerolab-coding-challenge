@@ -7,7 +7,7 @@ import { ConnectedRouter } from 'react-router-redux'
 import 'sanitize.css/sanitize.css'
 import './index.css'
 
-import App from './App'
+import App from './layout'
 import configureStore from './store/configureStore'
 import registerServiceWorker from './registerServiceWorker'
 
@@ -28,7 +28,7 @@ const render = () =>
   )
 
 if (module.hot) {
-  module.hot.accept('./App', () => {
+  module.hot.accept('./layout', () => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE)
     render()
   })

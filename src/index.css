@@ -1,22 +1,36 @@
 html {
-  color: rgba(0, 0, 0, 0.87);
-  background-color: rgb(250, 250, 250);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-size: 18px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
+}
+
+@media (max-width: 720px) {
+  html {
+    font-size: 16px;
+  }
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: "Source Sans Pro", sans-serif;
-  font-weight: 400;
   min-width: 320px;
   position: relative;
   width: 100%;
   overflow-x: hidden;
   line-height: 1.5;
-  letter-spacing: 0.05em;
+  color: #607d8b;
+  background: #f5f7f8;
+}
+
+input,
+textarea,
+select,
+button {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
 }
 
 img {

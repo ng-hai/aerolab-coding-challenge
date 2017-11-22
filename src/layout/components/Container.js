@@ -1,9 +1,11 @@
 import styled from 'styled-components'
 
 const Container = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+  min-height: 100vh;
   width: 100%;
-  height: 100vh;
 `
 
 export default Container
