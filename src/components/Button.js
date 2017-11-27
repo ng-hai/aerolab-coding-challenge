@@ -1,41 +1,23 @@
 import styled from 'styled-components'
 
 const Button = styled.button`
-  min-height: 2.25rem;
-  box-shadow: 8px 10px 20px 0 rgba(46, 61, 73, 0.15);
-  letter-spacing: 0;
-  line-height: 1.9375rem;
-  text-transform: capitalize;
-  padding: 0 8px;
-  margin: 0 4px;
-  color: #ff6600;
-  background-color: #ffffff;
-  border-radius: 3px;
-  transition: all 0.3s ease 0s;
-  border: 1px solid #ff8800;
+  user-select: none;
   outline: none;
+  border: none;
+  border-radius: 2px;
+  background-image: linear-gradient(135deg, #ff6600 0%, #ff8800 100%);
+  height: 2.5rem;
+  line-height: 2.5rem;
+  font-size: 1.1rem;
+  color: white;
+  padding: 0 1.2rem;
+  text-transform: uppercase;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-
-  ${props => props.noShadow && `box-shadow: none`};
-
-  ${props =>
-    props.active &&
-    !props.noShadow &&
-    `box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, 0.2)`};
-
-  ${props =>
-    (props.primary || props.active) &&
-    `
-    background-image: linear-gradient(35deg, #FF6600 10%, #FF8800 100%);
-    color: #ffffff;
-    border: none;
-  `};
+  box-shadow: 8px 10px 20px 0 rgba(46, 61, 73, 0.15);
+  transition: all 0.2s ease;
 
   &:hover {
-    ${props =>
-    !props.noShadow && `box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, 0.2)`};
+    box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, 0.2);
   }
 `
 

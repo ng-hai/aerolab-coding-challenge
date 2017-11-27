@@ -1,32 +1,21 @@
 import styled from 'styled-components'
 
 const Body = styled.p`
+  margin: 0;
   font-size: 1rem;
   letter-spacing: -0.002rem;
-  margin: 0;
-  ${props => props.gutterBottom && `margin-bottom: 0.5rem`};
+
+  ${({ gutterBottom }) => gutterBottom && `margin-bottom: 1rem`};
+  ${({ weight }) => weight && `font-weight: ${weight}`};
+  ${({ color }) => color && `color: ${color}`};
 `
 
-const SubHeading = styled.h3`
-  font-size: 1.3rem;
-  letter-spacing: 0.008rem;
-  font-weight: 500;
-  margin: 0;
-  ${props => props.gutterBottom && `margin-bottom: 0.5rem`};
+const Subheading = Body.extend`
+  font-size: 0.889rem;
 `
 
-const Caption = styled.p`
-  font-size: 0.8rem;
-  color: #b0bec5;
-  letter-spacing: -0.002rem;
-  margin: 0;
-  ${props => props.gutterBottom && `margin-bottom: 0.5rem`};
+const Subtitle = Body.extend`
+  font-size: 1.5rem;
 `
 
-const Headline = styled.h1`
-  font-size: 3.5rem;
-  margin: 0;
-  ${props => props.gutterBottom && `margin-bottom: 0.5rem`};
-`
-
-export default { Body, SubHeading, Caption, Headline }
+export default { Body, Subheading, Subtitle }

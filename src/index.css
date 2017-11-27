@@ -21,7 +21,7 @@ body {
   width: 100%;
   overflow-x: hidden;
   line-height: 1.5;
-  color: #607d8b;
+  color: #7c8185;
   background: #f5f7f8;
 }
 
@@ -40,4 +40,8 @@ img {
 ::selection {
   color: rgb(255, 255, 255);
   background-color: rgb(255, 123, 0);
+}
+
+img::selection {
+  background-color: transparent;
 }

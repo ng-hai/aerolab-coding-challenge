@@ -1,4 +1,4 @@
-import { string, number, shape } from 'prop-types'
+import { string, shape, number } from 'prop-types'
 
 export const ProductPropTypes = {
   _id: string.isRequired,
@@ -8,5 +8,10 @@ export const ProductPropTypes = {
   img: shape({
     url: string.isRequired,
     hdUrl: string.isRequired,
-  }),
+  }).isRequired,
+}
+
+export const DescriptionPropTypes = {
+  name: string.isRequired,
+  cost: number.isRequired,
 }

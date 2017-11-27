@@ -3,13 +3,11 @@ import { Link } from 'react-router-dom'
 
 import logo from '../../assets/logo.svg'
 import Routes from '../../routes'
-import { Button } from '../../components'
 
 import { NavBar, NavSection } from './Navigation'
 import Container from './Container'
 import Main from './Main'
 import Logo from './Logo'
-import Header from './Header'
 
 export default function Layout (props) {
   return (
@@ -24,15 +22,8 @@ export default function Layout (props) {
         </NavSection>
 
         {/* User Info */}
-        <NavSection>
-          <Button primary style={{ minWidth: '6rem' }}>
-            Get Started
-          </Button>
-        </NavSection>
+        <NavSection />
       </NavBar>
-
-      {/* Header */}
-      <Header />
 
       <Main>
         <Routes />

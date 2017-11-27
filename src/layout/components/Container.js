@@ -6,6 +6,7 @@ const Container = styled.div`
   min-width: 320px;
   min-height: 100vh;
   width: 100%;
+  background: #fafafa;
 `
 
 export default Container

@@ -7,9 +7,9 @@ import { all } from 'redux-saga/effects'
  * @param {any} sagas
  * @returns Generator function runned by Saga Middleware
  */
-function createRootSaga (sagas) {
+function createRootSaga (sagas = {}) {
   return function * rootSaga () {
-    yield all([...Object.keys(sagas).map(key => sagas[key])])
+    yield all(...Object.keys(sagas).map(key => sagas[key]))
   }
 }
 

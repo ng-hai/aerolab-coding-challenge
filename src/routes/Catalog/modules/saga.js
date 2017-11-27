@@ -4,30 +4,25 @@ import { getAllProducts } from '../../../api'
 
 import { CONSTANTS } from './reducer'
 
-function * catalogWorker () {
+function * onGetProducts () {
   try {
-    const responseData = yield call(getAllProducts)
+    const products = yield call(getAllProducts)
 
-    const productById = responseData.reduce((accumulator, currentValue) => {
-      accumulator[currentValue['_id']] = currentValue
-      console.log(accumulator)
-      return accumulator
+    const allProductIds = products.map(product => product['_id'])
+
+    const productById = products.reduce((byId, currentProduct) => {
+      byId[currentProduct['_id']] = currentProduct
+      return byId
     }, {})
 
-    const allProductIds = responseData.map(product => product['_id'])
-
-    yield put({
-      type: CONSTANTS.CATALOG_SUCCESS,
-      productById,
-      allProductIds,
-    })
+    yield put({ type: CONSTANTS.PRODUCTS_SUCCESS, allProductIds, productById })
   } catch (error) {
-    yield put({ type: CONSTANTS.CATALOG_FAILURE })
+    yield put({ type: CONSTANTS.PRODUCTS_FAILURE })
   }
 }
 
 function * catalogWatcher () {
-  yield all([takeLatest(CONSTANTS.CATALOG_REQUEST, catalogWorker)])
+  yield all([takeLatest(CONSTANTS.PRODUCTS_REQUEST, onGetProducts)])
 }
 
 export default [catalogWatcher()]

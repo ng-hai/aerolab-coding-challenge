@@ -1,18 +1,6 @@
-import {
-  func,
-  shape,
-  objectOf,
-  string,
-  number,
-  arrayOf,
-  bool,
-} from 'prop-types'
+import { shape, string, number, arrayOf, objectOf } from 'prop-types'
 
-/**
- * Catalog PropTypes
- */
 export const CatalogPropTypes = {
-  getCatalog: func.isRequired,
   products: shape({
     byId: objectOf(
       shape({
@@ -23,16 +11,9 @@ export const CatalogPropTypes = {
         img: shape({
           url: string.isRequired,
           hdUrl: string.isRequired,
-        }),
+        }).isRequired,
       })
     ).isRequired,
     allIds: arrayOf(string).isRequired,
-  }).isRequired,
-  sorting: arrayOf(
-    shape({
-      name: string.isRequired,
-      value: string.isRequired,
-      active: bool.isRequired,
-    })
-  ).isRequired,
+  }),
 }

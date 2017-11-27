@@ -1,41 +1,41 @@
 /**
  * Constants
  */
-const CATALOG_REQUEST = '@@aero/CATALOG_REQUEST'
-const CATALOG_FAILURE = '@@aero/CATALOG_FAILURE'
-const CATALOG_SUCCESS = '@@aero/CATALOG_SUCCESS'
+const PRODUCTS_REQUEST = '@@aero/PRODUCTS_REQUEST'
+const PRODUCTS_FAILURE = '@@aero/PRODUCTS_FAILURE'
+const PRODUCTS_SUCCESS = '@@aero/PRODUCTS_SUCCESS'
 
 export const CONSTANTS = {
-  CATALOG_REQUEST,
-  CATALOG_FAILURE,
-  CATALOG_SUCCESS,
+  PRODUCTS_REQUEST,
+  PRODUCTS_FAILURE,
+  PRODUCTS_SUCCESS,
 }
 
 /**
  * Actions
  */
-export const getCatalog = () => ({
-  type: CATALOG_REQUEST,
+export const getProducts = () => ({
+  type: PRODUCTS_REQUEST,
 })
 
 /**
- * Handlers
+ * Handler
  */
 const ActionHandler = {
-  [CATALOG_REQUEST]: (currentState, action) => ({
+  [PRODUCTS_REQUEST]: (currentState, action) => ({
     ...currentState,
-    gettingCatalog: true,
+    isLoading: true,
   }),
-  [CATALOG_FAILURE]: (currentState, action) => ({
+  [PRODUCTS_FAILURE]: (currentState, action) => ({
     ...currentState,
-    gettingCatalog: false,
+    isLoading: false,
   }),
-  [CATALOG_SUCCESS]: (currentState, action) => ({
+  [PRODUCTS_SUCCESS]: (currentState, action) => ({
     ...currentState,
-    gettingCatalog: false,
+    isLoading: false,
     products: {
-      byId: { ...action.productById },
-      allIds: [...action.allProductIds],
+      byId: action.productById,
+      allIds: action.allProductIds,
     },
   }),
 }
@@ -44,33 +44,10 @@ const ActionHandler = {
  * Initial State
  */
 const initialState = {
-  // Show loading when making request
-  gettingCatalog: false,
-  paging: {
-    currentPage: 1,
-    itemsPerPage: 16,
-  },
   products: {
     byId: {},
     allIds: [],
   },
-  sorting: [
-    {
-      name: 'Most Recent',
-      value: 'MOSTRECENT',
-      active: true,
-    },
-    {
-      name: 'Lowest Price',
-      value: 'LOWESTPRICE',
-      active: false,
-    },
-    {
-      name: 'Highest Price',
-      value: 'HIGHESTPRICE',
-      active: false,
-    },
-  ],
 }
 
 /**

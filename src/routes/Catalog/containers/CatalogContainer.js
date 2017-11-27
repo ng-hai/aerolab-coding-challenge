@@ -1,13 +1,15 @@
 import { connect } from 'react-redux'
 
-import { getCatalog } from '../modules/reducer'
+import { getProducts } from '../modules/reducer'
 
-const mapStateToProps = ({ catalog }) => {
+const mapStateToProps = state => {
   return {
-    ...catalog,
+    ...state.catalog,
   }
 }
 
-const mapDispatchToProps = { getCatalog }
+const mapDispatchToProps = {
+  getProducts,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)
