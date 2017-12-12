@@ -18,4 +18,8 @@ const Subtitle = Body.extend`
   font-size: 1.5rem;
 `
 
-export default { Body, Subheading, Subtitle }
+const Title = Body.extend`
+  font-size: 3rem;
+`
+
+export default { Body, Subheading, Subtitle, Title }

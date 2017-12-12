@@ -7,14 +7,28 @@ const NavLink = styled(Link)`
   text-transform: capitalize;
   border-bottom: 2px solid rgba(0, 0, 0, 0);
   transition: all 0.2s ease 0s;
+  color: #ff6600;
+  position: relative;
 
   &:active,
   &:visited {
-    color: rgba(0, 0, 0, 0.87);
+    color: #ff6600;
   }
 
-  &:hover {
-    border-bottom-color: rgba(0, 0, 0, 0.87);
+  &::after {
+    content: '';
+    background-image: linear-gradient(to right, #ff6600 0%, #ff8800 100%);
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    transition: transform 0.2s ease-out;
+    transform: scaleX(0);
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
   }
 `
 

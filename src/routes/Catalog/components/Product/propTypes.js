@@ -1,6 +1,7 @@
 import { string, shape, number } from 'prop-types'
 
 export const ProductPropTypes = {
+  layout: string,
   _id: string.isRequired,
   name: string.isRequired,
   cost: number.isRequired,

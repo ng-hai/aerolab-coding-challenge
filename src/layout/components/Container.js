@@ -6,7 +6,8 @@ const Container = styled.div`
   min-width: 320px;
   min-height: 100vh;
   width: 100%;
-  background: #fafafa;
+  background: rgb(252, 252, 252);
+  position: relative;
 `
 
 export default Container

@@ -9,7 +9,7 @@ import { all } from 'redux-saga/effects'
  */
 function createRootSaga (sagas = {}) {
   return function * rootSaga () {
-    yield all(...Object.keys(sagas).map(key => sagas[key]))
+    yield all([...Object.keys(sagas).map(key => sagas[key]())])
   }
 }
 
