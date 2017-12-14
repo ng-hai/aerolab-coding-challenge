@@ -5,11 +5,18 @@ export const USER_INFO_REQUEST = '@@aero/USER_INFO_REQUEST'
 export const USER_INFO_FAILURE = '@@aero/USER_INFO_FAILURE'
 export const USER_INFO_SUCCESS = '@@aero/USER_INFO_SUCCESS'
 
+export const USER_POINTS_CHANGE = '@@aero/USER_POINTS_CHANGE'
+
 /**
  * Actions
  */
 export const getUserInfo = () => ({
   type: USER_INFO_REQUEST,
+})
+
+export const changeUserPoints = points => ({
+  type: USER_POINTS_CHANGE,
+  points,
 })
 
 /**
@@ -28,6 +35,13 @@ const ActionHandler = {
     ...currentState,
     isLoading: false,
     user: { ...action.user },
+  }),
+  [USER_POINTS_CHANGE]: (currentState, action) => ({
+    ...currentState,
+    user: {
+      ...currentState.user,
+      points: action.points,
+    },
   }),
 }
 

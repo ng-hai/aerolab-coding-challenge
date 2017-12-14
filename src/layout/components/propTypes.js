@@ -4,6 +4,7 @@ const notificationShape = {
   message: string.isRequired,
   timeout: number.isRequired,
   active: bool.isRequired,
+  action: string,
 }
 
 const userShape = {
@@ -12,14 +13,14 @@ const userShape = {
 }
 
 export const LayoutPropTypes = {
-  notification: shape(notificationShape).isRequired,
   user: shape(userShape),
-  hideNotification: func.isRequired,
   fixNavbar: bool,
 }
 
 export const AppPropTypes = {
   ...LayoutPropTypes,
+  notification: shape(notificationShape).isRequired,
+  hideNotification: func.isRequired,
   getUserInfo: func.isRequired,
 }
 

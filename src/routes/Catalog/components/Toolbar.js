@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const Toolbar = styled.div`
   height: 57px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   margin: 0 1rem;
 

@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import Transition from 'react-motion-ui-pack'
+import LazyLoad from 'react-lazyload'
 
 import Paper from './Paper'
 import Image from './Image'
@@ -11,22 +12,38 @@ class Product extends PureComponent {
   static propTypes = ProductPropTypes
   static defaultProps = {
     layout: 'Grid',
+    userPoints: 0,
   }
 
   render () {
-    const { name, cost, category, img: { url }, layout } = this.props
+    const {
+      name,
+      cost,
+      category,
+      img: { url },
+      layout,
+      userPoints,
+      onRedeem,
+      loading,
+    } = this.props
+
     return (
-      <Transition component={false} enter={FadeIn} leave={FadeOut}>
-        <Paper layout={layout} key='paper'>
-          <Image src={url} alt={name} />
-          <Description
-            layout={layout}
-            name={name}
-            cost={cost}
-            category={category}
-          />
-        </Paper>
-      </Transition>
+      <LazyLoad height={320} once>
+        <Transition component={false} enter={FadeIn} leave={FadeOut}>
+          <Paper layout={layout} key='paper'>
+            <Image src={url} alt={name} />
+            <Description
+              layout={layout}
+              name={name}
+              cost={cost}
+              category={category}
+              neededPoints={userPoints - cost}
+              onRedeem={onRedeem}
+              loading={loading}
+            />
+          </Paper>
+        </Transition>
+      </LazyLoad>
     )
   }
 }

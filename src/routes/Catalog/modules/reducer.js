@@ -9,10 +9,17 @@ const PRODUCTS_SUCCESS = '@@aero/PRODUCTS_SUCCESS'
 const PRODUCTS_SORTING = '@@aero/PRODUCTS_SORTING'
 const PAGE_CHANGE = '@@aero/PAGE_CHANGE'
 
+const PRODUCT_REDEEM_REQUEST = '@@aero/PRODUCT_REDEEM_REQUEST'
+const PRODUCT_REDEEM_FAILURE = '@@aero/PRODUCT_REDEEM_FAILURE'
+const PRODUCT_REDEEM_SUCCESS = '@@aero/PRODUCT_REDEEM_SUCCESS'
+
 export const CONSTANTS = {
   PRODUCTS_REQUEST,
   PRODUCTS_FAILURE,
   PRODUCTS_SUCCESS,
+  PRODUCT_REDEEM_REQUEST,
+  PRODUCT_REDEEM_FAILURE,
+  PRODUCT_REDEEM_SUCCESS,
 }
 
 /**
@@ -30,6 +37,13 @@ export const changeSorting = sortOption => ({
 export const changePage = page => ({
   type: PAGE_CHANGE,
   page,
+})
+
+export const redeemProduct = (productId, cost, userPoints) => ({
+  type: PRODUCT_REDEEM_REQUEST,
+  productId,
+  cost,
+  userPoints,
 })
 
 /**
@@ -72,6 +86,18 @@ const ActionHandler = {
       currentPage: action.page,
     },
   }),
+  [PRODUCT_REDEEM_REQUEST]: (currentState, action) => ({
+    ...currentState,
+    redeemLoading: action.productId,
+  }),
+  [PRODUCT_REDEEM_SUCCESS]: (currentState, action) => ({
+    ...currentState,
+    redeemLoading: null,
+  }),
+  [PRODUCT_REDEEM_FAILURE]: (currentState, action) => ({
+    ...currentState,
+    redeemLoading: null,
+  }),
 }
 
 /**
@@ -84,6 +110,7 @@ export const SortOption = {
 
 const initialState = {
   isLoading: false,
+  redeemLoading: null,
   sortBy: SortOption.LOWEST,
   products: {
     byId: {},

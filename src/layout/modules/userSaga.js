@@ -21,7 +21,7 @@ function * userWorker () {
     yield put({ type: USER_INFO_SUCCESS, user: response })
   } catch (error) {
     yield put({ type: USER_INFO_FAILURE })
-    yield put(showNotification(error.message))
+    yield put(showNotification(error.message, 'Dismiss'))
   }
 }
 

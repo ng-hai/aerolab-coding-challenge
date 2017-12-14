@@ -1,4 +1,13 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+const loadingAnimation = keyframes`
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`
 
 const Button = styled.button`
   user-select: none;
@@ -14,7 +23,13 @@ const Button = styled.button`
   transition: all 0.2s ease-out;
   font-weight: 600;
   background: transparent;
+  display: flex;
+  align-items: center;
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.05);
+
+  & > svg {
+    transition: all 200ms ease-out;
+  }
 
   @media (max-width: 420px) {
     font-size: 1rem;
@@ -27,11 +42,24 @@ const Button = styled.button`
     background: #ff8800;
     color: #fff;
   `};
+
   ${({ secondary, active }) =>
     secondary &&
     `
     background: #fff;
     ${active && 'color: #ff8800;'}
+  `};
+
+  ${({ loading }) =>
+    loading &&
+    `
+    cursor: default;
+    filter: grayscale(50%);
+    & > svg {
+      animation: 1s ${loadingAnimation} ease-out infinite;
+      fill: none;
+      margin-left: 10px;
+    }
   `};
 
   &:hover {

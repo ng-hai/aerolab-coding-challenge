@@ -62,4 +62,8 @@ function getAllProducts () {
   return axios.get('/products').then(response => response.data)
 }
 
-export { getUser, addPoints, getRedeemHistory, getAllProducts }
+function redeemProduct (productId) {
+  return axios.post('/redeem', { productId }).then(response => response.data)
+}
+
+export { getUser, addPoints, getRedeemHistory, getAllProducts, redeemProduct }

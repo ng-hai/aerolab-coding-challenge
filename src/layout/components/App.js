@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import EventListener from 'react-event-listener'
+import { Notification } from 'react-notification'
 
 import Layout from './Layout'
 import { AppPropTypes } from './propTypes'
@@ -22,17 +23,29 @@ class App extends PureComponent {
   render () {
     const { notification, user, hideNotification } = this.props
     return [
-      <Layout
-        key='Layout'
-        notification={notification}
-        user={user}
-        hideNotification={hideNotification}
-        fixNavbar={this.state.scrollOver}
-      />,
+      <Layout key='Layout' user={user} fixNavbar={this.state.scrollOver} />,
       <EventListener
         key='EventListener'
         target='window'
         onScroll={this.onWindowScroll}
+      />,
+      <Notification
+        key='Notification'
+        isActive={notification.active}
+        message={notification.message}
+        action={notification.action}
+        onClick={hideNotification}
+        dismissAfter={notification.timeout}
+        onDismiss={hideNotification}
+        actionStyle={{ color: '#ff6600' }}
+        activeBarStyle={{
+          marginRight: '1rem',
+          zIndex: 100,
+          display: 'flex',
+          alignItems: 'center',
+          borderRadius: 2,
+          fontFamily: 'Source Sans Pro',
+        }}
       />,
     ]
   }

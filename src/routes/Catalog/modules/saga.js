@@ -1,6 +1,11 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects'
 
-import { getAllProducts } from '../../../api'
+import { getAllProducts, redeemProduct } from '../../../api'
+import {
+  showNotification,
+  hideNotification,
+} from '../../../layout/modules/notificationReducer'
+import { changeUserPoints } from '../../../layout/modules/userReducer'
 
 import { CONSTANTS, ProductsPerPage } from './reducer'
 
@@ -33,11 +38,35 @@ function * onGetProducts () {
     })
   } catch (error) {
     yield put({ type: CONSTANTS.PRODUCTS_FAILURE })
+    yield put(showNotification(error.message, 'Dismiss'))
+  }
+}
+
+function * onRedeemProduct ({ productId, cost, userPoints }) {
+  try {
+    yield put(hideNotification())
+    const response = yield call(redeemProduct, productId)
+
+    if (response.error) {
+      throw new Error(response.error)
+    }
+
+    // Deduct user's points
+    const deductedPoints = userPoints - cost
+    yield put(changeUserPoints(deductedPoints))
+    yield put(showNotification(response.message, 'Dismiss', 3000))
+    yield put({ type: CONSTANTS.PRODUCT_REDEEM_SUCCESS })
+  } catch (error) {
+    yield put({ type: CONSTANTS.PRODUCT_REDEEM_FAILURE })
+    yield put(showNotification(error.message, 'Dismiss'))
   }
 }
 
 function * catalogWatcher () {
-  yield all([takeLatest(CONSTANTS.PRODUCTS_REQUEST, onGetProducts)])
+  yield all([
+    takeLatest(CONSTANTS.PRODUCTS_REQUEST, onGetProducts),
+    takeLatest(CONSTANTS.PRODUCT_REDEEM_REQUEST, onRedeemProduct),
+  ])
 }
 
 export default catalogWatcher

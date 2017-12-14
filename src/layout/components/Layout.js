@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Notification } from 'react-notification'
 
 import Routes from '../../routes'
 
@@ -34,9 +33,7 @@ export default function Layout ({
           {/* User Info */}
           {user && (
             <NavSection>
-              <Link style={{ textDecoration: 'none' }} to='/user'>
-                <UserInfo name={user.name} points={user.points} />
-              </Link>
+              <UserInfo name={user.name} points={user.points} />
             </NavSection>
           )}
         </NavSection>
@@ -47,14 +44,6 @@ export default function Layout ({
       <Main>
         <Routes />
       </Main>
-
-      <Notification
-        isActive={notification.active}
-        message={notification.message}
-        dismissAfter={notification.timeout}
-        onDismiss={hideNotification}
-        barStyle={{ zIndex: 100 }}
-      />
     </Container>
   )
 }

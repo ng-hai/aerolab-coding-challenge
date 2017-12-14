@@ -15,7 +15,7 @@ const Button = styled.div`
   border: 2px solid #999;
   border-radius: 50%;
   transition: all 375ms ease;
-  margin: auto 10px auto 0;
+  margin: auto 0 auto 10px;
 
   ${({ disabled }) => !disabled && `cursor: pointer;`};
 

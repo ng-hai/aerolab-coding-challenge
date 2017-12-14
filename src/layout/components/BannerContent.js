@@ -59,7 +59,7 @@ const To = styled(Typography.Title).attrs({ children: 'to' })`
   font-family: 'Roboto', sans-serif;
 `
 
-const Aero = To.extend.attrs({ children: 'aero' })`
+const Aero = To.extend.attrs({ children: 'aerolab' })`
   color: #ff6600;
   background: white;
   padding: 0 0.5rem;

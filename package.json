@@ -19,6 +19,7 @@
     "react-dom": "^16.1.1",
     "react-event-listener": "^0.5.1",
     "react-feather": "^1.0.7",
+    "react-lazyload": "^2.3.0",
     "react-motion-ui-pack": "^0.10.3",
     "react-notification": "^6.8.2",
     "react-parallax": "^1.5.1",
@@ -30,11 +31,13 @@
     "redux": "^3.7.2",
     "redux-saga": "^0.16.0",
     "sanitize.css": "^5.0.0",
+    "serve": "^6.4.1",
     "styled-components": "^2.2.3"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "now-start": "serve --single ./build",
+    "build": "export GENERATE_SOURCEMAP=false && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

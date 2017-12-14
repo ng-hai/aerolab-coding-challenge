@@ -4,6 +4,7 @@ import {
   getProducts,
   changeSorting,
   changePage,
+  redeemProduct,
   SortOption,
 } from '../modules/reducer'
 
@@ -34,8 +35,9 @@ const filterProducts = (products, sortBy, currentPage, itemsPerPage) => {
     .slice(startIndex, endIndex)
 }
 
-const mapStateToProps = ({ catalog }) => {
-  const { products, sortBy, paging } = catalog
+const mapStateToProps = ({ catalog, authentication }) => {
+  const { products, sortBy, paging, isLoading, redeemLoading } = catalog
+  const { user } = authentication
 
   const filteredProducts = filterProducts(
     products,
@@ -47,6 +49,9 @@ const mapStateToProps = ({ catalog }) => {
   return {
     sortBy,
     paging,
+    isLoading,
+    redeemLoading,
+    userPoints: (user && user.points) || 0,
     products: filteredProducts,
     sortOptions: SORT_OPTIONS,
   }
@@ -56,6 +61,7 @@ const mapDispatchToProps = {
   getProducts,
   changeSorting,
   changePage,
+  redeemProduct,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)

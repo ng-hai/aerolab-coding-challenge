@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import styled from 'styled-components'
-
-import caret from '../assets/caret.png'
+import { ChevronDown } from 'react-feather'
 
 import { SelectPropTypes } from './propTypes'
 
@@ -22,21 +21,22 @@ const Wrapper = styled.div`
   user-select: none;
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.05);
 
-  &:after {
-    content: '';
+  &:hover > svg {
+    color: #ff6600;
+  }
+
+  & > svg {
     position: absolute;
     right: 10px;
-    top: 50%;
-    margin-top: -3px;
-    width: 14px;
-    height: 8px;
+    fill: none;
+    color: #ff8800;
     transform: rotate(0deg);
     transition: all 0.2s ease-out;
-    background: url(${caret}) 0 0 no-repeat;
     ${({ active }) =>
     active &&
       `
       transform: rotate(-180deg);
+      color: #ff6600;
     `};
   }
 `
@@ -166,6 +166,7 @@ class Select extends PureComponent {
             />
           ))}
         </Dropdown>
+        <ChevronDown />
       </Wrapper>
     )
   }

@@ -45,17 +45,17 @@ const Paper = styled.div`
         }
 
         & > img {
-          transform: scale(1, 1);
+          transform: scale(0.8, 0.8);
           transform-origin: top;
           transition: all 0.2s ease-out;
         }
 
         &:hover > img {
-          transform: scale(1.02, 1.02);
+          transform: scale(1, 1);
           background: none;
         }
 
-        & button {
+        & button, & .attention {
           position: absolute;
           top: calc(100% - 10px);
           visibility: hidden;
@@ -66,7 +66,7 @@ const Paper = styled.div`
           overflow: hidden;
         }
 
-        &:hover button {
+        &:hover button, &:hover .attention {
           visibility: visible;
           height: 2.5rem;
           opacity: 1;

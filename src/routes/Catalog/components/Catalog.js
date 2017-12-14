@@ -1,15 +1,16 @@
 import React, { PureComponent } from 'react'
 import scrollToComponent from 'react-scroll-to-component'
 
-import { Select, Typography } from '../../../components'
+import { Select } from '../../../components'
 
 import Grid from './Grid'
 import Product from './Product'
+import SkeletonLoading from './Product/SkeletonLoading'
 import Container from './Container'
 import Toolbar from './Toolbar'
 import ToolbarSection from './ToolbarSection'
-import Pagination from './Pagination'
 import ViewOptions from './ViewOptions'
+import PaginationToolbar from './PaginationToolbar'
 
 import { CatalogPropTypes } from './propTypes'
 
@@ -46,34 +47,26 @@ class Catalog extends PureComponent {
     this.Toolbar = node
   }
 
+  onRedeemProduct = ({ _id, cost }) => () => {
+    const { userPoints, redeemProduct, redeemLoading } = this.props
+    redeemLoading !== _id && redeemProduct(_id, cost, userPoints)
+  }
+
   render () {
-    const { sortOptions, sortBy, products, paging } = this.props
-    const { currentPage, totalPages } = paging
+    const {
+      sortOptions,
+      sortBy,
+      products,
+      paging,
+      userPoints,
+      isLoading,
+      redeemLoading,
+    } = this.props
+    const { itemsPerPage } = paging
 
     return (
       <Container>
-        <Toolbar>
-          <ToolbarSection>
-            <Typography.Subtitle>
-              {paging.currentPage * paging.itemsPerPage} of {paging.totalItems}{' '}
-              products
-            </Typography.Subtitle>
-          </ToolbarSection>
-          <ToolbarSection>
-            <Pagination
-              prevDisabled={currentPage === 1}
-              nextDisabled={currentPage === totalPages}
-              onPrevClick={this.onChangePage(
-                currentPage === 1,
-                currentPage - 1
-              )}
-              onNextClick={this.onChangePage(
-                currentPage === totalPages,
-                currentPage + 1
-              )}
-            />
-          </ToolbarSection>
-        </Toolbar>
+        <PaginationToolbar paging={paging} onChangePage={this.onChangePage} />
 
         <Toolbar innerRef={this.setToolbarRef}>
           <ToolbarSection>
@@ -90,40 +83,34 @@ class Catalog extends PureComponent {
         </Toolbar>
 
         <Grid layout={this.state.viewBy}>
-          {products.map(product => (
-            <Product
-              key={product['_id']}
-              layout={this.state.viewBy}
-              {...product}
-            />
-          ))}
+          {!isLoading &&
+            products.map(product => (
+              <Product
+                key={product['_id']}
+                {...product}
+                layout={this.state.viewBy}
+                loading={redeemLoading === product['_id']}
+                userPoints={userPoints}
+                onRedeem={this.onRedeemProduct(product)}
+              />
+            ))}
+          {isLoading && generateSkeletonLoading(itemsPerPage)}
         </Grid>
 
-        <Toolbar>
-          <ToolbarSection>
-            <Typography.Subtitle>
-              {paging.currentPage * paging.itemsPerPage} of {paging.totalItems}{' '}
-              products
-            </Typography.Subtitle>
-          </ToolbarSection>
-          <ToolbarSection>
-            <Pagination
-              prevDisabled={currentPage === 1}
-              nextDisabled={currentPage === totalPages}
-              onPrevClick={this.onChangePage(
-                currentPage === 1,
-                currentPage - 1
-              )}
-              onNextClick={this.onChangePage(
-                currentPage === totalPages,
-                currentPage + 1
-              )}
-            />
-          </ToolbarSection>
-        </Toolbar>
+        <PaginationToolbar paging={paging} onChangePage={this.onChangePage} />
       </Container>
     )
   }
+}
+
+function generateSkeletonLoading (itemsPerPage) {
+  const result = []
+  let i = 0
+  for (i; i < itemsPerPage; i++) {
+    result.push(<SkeletonLoading key={i} />)
+  }
+
+  return result
 }
 
 export default Catalog

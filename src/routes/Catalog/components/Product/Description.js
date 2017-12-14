@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { RefreshCw } from 'react-feather'
 
 import { Typography, Coin, Button } from '../../../../components'
 
@@ -23,20 +24,50 @@ const Container = styled.div`
 const Price = styled.div`
   display: flex;
   margin-bottom: 0.5rem;
+
+  ${({ disabled }) => disabled && `filter: grayscale()`};
 `
 
-export default function Description ({ name, cost, category, layout }) {
+const Attention = styled.div`
+  font-style: italic;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+`
+
+export default function Description ({
+  name,
+  cost,
+  category,
+  layout,
+  neededPoints,
+  onRedeem,
+  loading,
+}) {
   return (
     <Container layout={layout}>
       {layout === 'List' && (
         <Typography.Subheading>{category}</Typography.Subheading>
       )}
       <Typography.Body weight='600'>{name}</Typography.Body>
-      <Price>
+      <Price disabled={neededPoints < 0}>
         <Coin style={{ marginRight: 10, marginTop: 3 }} />
         <Typography.Subtitle color='#ff6600'>{cost}</Typography.Subtitle>
       </Price>
-      <Button primary>Redeem now</Button>
+      {neededPoints >= 0 && (
+        <Button primary onClick={onRedeem} loading={loading}>
+          {loading ? 'Processing' : 'Redeem now'}
+          {loading && <RefreshCw />}
+        </Button>
+      )}
+      {neededPoints < 0 && (
+        <Attention className='attention'>
+          <Typography.Body color='#ff8800'>{`* Need ${Math.abs(
+            neededPoints
+          )}`}</Typography.Body>
+          <Coin style={{ marginLeft: 5 }} />
+        </Attention>
+      )}
     </Container>
   )
 }

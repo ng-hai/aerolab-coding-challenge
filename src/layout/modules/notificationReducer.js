@@ -4,9 +4,10 @@
 export const SHOW_NOTIFICATION = '@@aero/SHOW_NOTIFICATION'
 export const HIDE_NOTIFICATION = '@@aero/HIDE_NOTIFICATION'
 
-export const showNotification = (message, timeout = 5000) => ({
+export const showNotification = (message, action, timeout = 5000) => ({
   type: SHOW_NOTIFICATION,
   message,
+  action,
   timeout,
 })
 
@@ -22,12 +23,15 @@ const ActionHandler = {
     ...currentState,
     active: true,
     message: action.message,
-    timeout: action.timeout || 5000,
+    action: action.action,
+    timeout: action.timeout,
   }),
   [HIDE_NOTIFICATION]: (currentState, action) => ({
     ...currentState,
     active: false,
+    action: '',
     message: '',
+    timeout: 5000,
   }),
 }
 
