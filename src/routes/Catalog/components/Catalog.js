@@ -49,7 +49,10 @@ class Catalog extends PureComponent {
 
   onRedeemProduct = ({ _id, cost }) => () => {
     const { userPoints, redeemProduct, redeemLoading } = this.props
-    redeemLoading !== _id && redeemProduct(_id, cost, userPoints)
+
+    if (redeemLoading !== _id && userPoints >= cost) {
+      redeemProduct(_id, cost, userPoints)
+    }
   }
 
   render () {
