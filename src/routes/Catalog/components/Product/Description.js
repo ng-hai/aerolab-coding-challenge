@@ -25,7 +25,8 @@ const Price = styled.div`
   display: flex;
   margin-bottom: 0.5rem;
 
-  ${({ disabled }) => disabled && `filter: grayscale()`};
+  ${({ disabled }) =>
+    disabled && `filter: grayscale(100%); filter: grayscale(1);`};
 `
 
 const Attention = styled.div`
