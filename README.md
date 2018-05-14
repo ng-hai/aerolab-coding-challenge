@@ -1,6 +1,6 @@
 ## Aerolab Coding Challenge
 
-https://aerolab-coding-challenge-wrnkhfejzw.now.sh/
+https://aerolab-coding-challenge.now.sh/
 
 ### Challenge
 
