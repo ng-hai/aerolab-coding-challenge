@@ -8,7 +8,7 @@ The challenge is to build a catalog view for a loyalty program app in one month.
 
 ### Result
 
-[![Results](https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.0-9/25994532_1642898255768580_4699177392102647295_n.png?oh=962c6fab9b63b1f0ff102714ff1420f6&oe=5B1CAFC3)](https://www.facebook.com/aerolab/photos/a.402968409761577.92961.114623045262783/1642898255768580/?type=3&theater)
+![Results](./result.png)
 
 [View on Facebook](https://www.facebook.com/aerolab/photos/a.402968409761577.92961.114623045262783/1642898255768580/?type=3&theater)
 
